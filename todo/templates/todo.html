@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title%} Todo List{% endblock %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/todo.css' %}" />
+
+{% endblock %}
+
+{% block nav %}
+<header id="header">
+				<div class="inner">
+					<a href="index.html" class="logo"><strong>Todo List</strong> by Pamela</a>
+					<nav id="nav">
+						<a href="{% url 'index' %}">Accueil</a>
+						<a href="{% url 'todo' %}">Tâches</a>
+						<a href="{% url 'admin:index' %}">Admin</a>
+					</nav>
+					<a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+				</div>
+</header>
+{% endblock %}
+<body class="container-fluid">
+{% block page_content %}
+{% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-info">
+    <strong>{{message}}</strong>
+  </div>
+  {% endfor %}
+  {% endif %}
+
+  <center class="row">
+    <h1 class="h1"><i>Tâches à faire</i></h1>
+    <hr />
+  </center>
+
+  <div class="row">
+
+    <div class="col-md-8">
+
+      {% for i in list %}
+      <div class="card">
+        <a href="{% url 'detail' i.pk %}"><center><b>{{i.title}}</b></center></a>
+        <hr/>
+        Categories:&nbsp;
+        {% for category in i.category.all %}
+        <a href="{% url 'category' category.name %}">
+            {{ category.name }}
+        </a>
+        {% endfor %}
+        {{i.date}}
+        <hr/>
+        {{i.detail}}
+        <br />
+        <br />
+        <form action="/del/{{i.id}}" method="POST" style=" padding-right: 4%; padding-bottom: 3%;">
+          {% csrf_token %}
+          <button value="remove" type="submit"  class="btn btn-primary purple" style="float: right;"> supprimer</button>
+        </form>
+      </div>
+      {% endfor%}
+    </div>
+    <div class="col-md-1"> </div>
+    <div class="col-md-3" >
+      <div  class="submit_form">
+      <form  method="POST">
+        {% csrf_token %}
+        {{forms|crispy}}
+        <center>
+        <input type="submit" class="btn btn-default" value="envoyer" />
+      </center>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+</body>

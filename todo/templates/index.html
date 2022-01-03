@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+{% endblock %}
+
+{% block page_content %}
+<section id="banner">
+				<div class="inner">
+					<header>
+						<h1>Bienvenue ! </h1>
+					</header>
+
+					<div class="flex ">
+
+						<div>
+							<span class="icon fa-car"></span>
+							<i class="fa-solid fa-face-awesome"></i>
+							<h3>Pense</h3>
+							<p>Pense à ton idée</p>
+						</div>
+
+						<div>
+							<span class="icon fa-camera"></span>
+							<h3>Ecris</h3>
+							<p>Met en place ton idée</p>
+						</div>
+
+						<div>
+							<span class="icon fa-bug"></span>
+							<h3>Fais le</h3>
+							<p>N'oublie pas de cocher la case !</p>
+						</div>
+
+					</div>
+
+					<footer>
+						<a href="#" class="button">Get Started</a>
+					</footer>
+				</div>
+			</section>
+{% endblock %}

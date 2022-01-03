@@ -1,0 +1,26 @@
+#header{
+    background-color : purple !important;
+    position: fixed;
+    margin-top:-2.5%;
+}
+
+.form{
+    padding-right: 4%;
+    padding-bottom: 3%;
+}
+
+.button{
+    float: right;
+}
+
+.purple{
+    background-color: purple !important;
+}
+
+.h1{
+    margin-top: 5%;
+}
+
+.p{
+    font-size: 30px !important;
+}

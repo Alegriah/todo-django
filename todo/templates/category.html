@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title%} Categories {% endblock %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/todo.css' %}" />
+{% endblock %}
+{% block nav %}
+<header id="header">
+				<div class="inner">
+					<a href="index.html" class="logo"><strong>Todo List</strong> by Pamela</a>
+					<nav id="nav">
+						<a href="{% url 'index' %}">Accueil</a>
+						<a href="{% url 'todo' %}">Tâches</a>
+						<a href="{% url 'admin:index' %}">Admin</a>
+					</nav>
+					<a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+				</div>
+</header>
+{% endblock %}
+
+{% block page_content %}
+<div class="col-md-8 offset-md-2">
+    <h1 class="h1">{{ category | title }}</h1>
+    <hr>
+    {% for i in list %}
+        <h2><a href="{% url 'detail' i.pk %}">{{ i.title }}</a></h2>
+        <p>{{ i.detail | slice:":400" }}...</p>
+
+    {% endfor %}
+</div>
+{% endblock %}
